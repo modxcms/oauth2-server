@@ -1,0 +1,29 @@
+{
+    "name": "OAuth2Server"
+    ,"lowCaseName": "oauth2server"
+    ,"description": "Deploy oauth2-server-php alongside MODX."
+    ,"author": "YJ Tso"
+    ,"version": "0.1.0"
+    ,"package":{
+        "elements": {
+            "snippets": [{
+                "name": "oauth2endpoint.snippet.php"
+            }]
+        }
+        ,"resources": [{
+            "pagetitle": "Sample OAuth2 Endpoint"
+            ,"alias": "oauth"
+            ,"content": "[[!oauth2endpoint]]"
+            ,"template": 0
+        }]
+        ,"systemSettings": [{
+            "key": "oauth2server.enabled"
+            ,"value": 1
+        }]
+    }
+    ,"build": {
+        "resolver": {
+            
+        }
+    }
+}
