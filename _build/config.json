@@ -12,6 +12,9 @@
                 },{
                 "name": "authorizeOAuth2",
                 "file": "authorizeoauth2.snippet.php"
+                },{
+                "name": "grantOAuth2Tokens",
+                "file": "grantoauth2tokens.snippet.php"
             }],
             "chunks": [{
                 "name": "oauth2server_auth_tpl",
@@ -19,9 +22,9 @@
             }]
         }
         ,"resources": [{
-            "pagetitle": "Sample OAuth2 Endpoint"
-            ,"alias": "api"
-            ,"content": "[[!serveOAuth2]]"
+            "pagetitle": "OAuth2 Token Controller"
+            ,"alias": "tokens"
+            ,"content": "[[!grantOAuth2Tokens]]"
             ,"template": 0
             ,"content_type": 7
             ,"published": 1
@@ -29,7 +32,7 @@
             ,"cacheable": 0
             ,"richtext": 0
         },{
-            "pagetitle": "Sample OAuth2 Authorization"
+            "pagetitle": "OAuth2 Authorization"
             ,"alias": "auth"
             ,"content": "[[!authorizeOAuth2]]"
             ,"template": 0

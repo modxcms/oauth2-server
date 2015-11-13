@@ -2,12 +2,21 @@
 /**
  * serveOAuth2
  * 
- * Serves as OAuth2 endpoint in MODX
- *
- *
+ * Serves an OAuth2 endpoint in MODX
+ * 
+ * OPTIONS:
+ * redirectUnauthorized -   (int) Redirects unauthorized requests, preventing anything below this Snippet in the Resource/Template from being processed. Default 1 
+ * redirectTo -             (string) Accepts either 'error' or 'unauthorized' page, to which to redirect users. Default 'unauthorized'
+ * returnOnUnauthorized -   (mixed) Specify a return value if request is unauthorized. Default 0
+ * returnOnSuccess -        (mixed) Specify a return value if request is successfully verified. Default 1
+ * 
  **/
 
 // Options
+$redirectUnauthorized = (int) $modx->getOption('redirectUnauthorized', $scriptProperties, 0);
+$redirectTo = $modx->getOption('redirectTo', $scriptProperties, 'unauthorized');
+$returnOnUnauthorized = $modx->getOption('returnOnUnauthorized', $scriptProperties, 0);
+$returnOnSuccess = $modx->getOption('returnOnSuccess', $scriptProperties, 1);
 
 // Paths
 $corePath = $modx->getOption('oauth2server.core_path', null, $modx->getOption('core_path') . 'components/oauth2server/');
@@ -21,22 +30,25 @@ OAuth2\Autoloader::register();
 $storage = new OAuth2\Storage\Pdo($modx->config['connections'][0]);
 $server = new OAuth2\Server($storage, array('enforce_state' => false));
 
-$server->addGrantType(new OAuth2\GrantType\ClientCredentials($storage));
+// Only auth code grant type supported right now
 $server->addGrantType(new OAuth2\GrantType\AuthorizationCode($storage));
 
 // Process request/response
 $request = OAuth2\Request::createFromGlobals();
 $response = new OAuth2\Response();
 
-// Only handle token requests if POST
-$post = modX::sanitize($_POST, $modx->sanitizePatterns);
-if (!empty($post)) {
-    $server->handleTokenRequest($request)->send();
-} else {
-    // Only handle resource requests if GET
-    if (!$server->verifyResourceRequest($request)) {
-        return $modx->toJSON(array('success' => false, 'message' => 'Unauthorized.'));
+// Verify resource requests
+$verified = $server->verifyResourceRequest($request);
+if (!$verified) {
+    if ($redirectUnauthorized) {
+        if ($redirectTo === 'error') {
+            $modx->sendErrorPage();
+        } else {
+            $modx->sendUnauthorizedPage();
+        }
+    } else {
+        return $returnOnUnauthorized;
     }
-    // If verified, do stuff:
-    return $modx->toJSON(array('success' => true, 'message' => 'You accessed my APIs!'));
+} else {
+    return $returnOnSuccess;
 }
