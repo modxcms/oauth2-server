@@ -42,7 +42,7 @@ class OAuth2Server
                 'token_param_name'         => 'access_token',
                 'token_bearer_header_name' => 'Bearer',
                 'enforce_state'            => false,
-                'require_exact_redirect_uri' => true,
+                'require_exact_redirect_uri' => false,
                 'allow_implicit'           => false,
                 'allow_credentials_in_request_body' => true,
                 'allow_public_clients'     => true,

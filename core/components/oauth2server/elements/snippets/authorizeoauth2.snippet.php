@@ -34,7 +34,10 @@ if (!($oauth2 instanceof OAuth2Server)) {
 $server = $oauth2->createServer();
 $request = $oauth2->createRequest();
 $response = $oauth2->createResponse();
-if (!$server || !$request || !$response) return;
+if (!$server || !$request || !$response) {
+    $modx->log(modX::LOG_LEVEL_WARN, '[verifyOAuth2]: could not create the required OAuth2 Server objects.');
+    return;
+}
 
 // Validate the authorization request
 if (!$server->validateAuthorizeRequest($request, $response)) {
