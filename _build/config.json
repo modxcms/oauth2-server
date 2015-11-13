@@ -3,7 +3,7 @@
     ,"lowCaseName": "oauth2server"
     ,"description": "Deploy oauth2-server-php alongside MODX."
     ,"author": "YJ Tso"
-    ,"version": "0.2.0"
+    ,"version": "0.2.3"
     ,"package":{
         "elements": {
             "snippets": [{
@@ -24,31 +24,27 @@
         ,"resources": [{
             "pagetitle": "OAuth2 Token Controller"
             ,"alias": "tokens"
+            ,"template": "0"
+            ,"content_type": "7"
+            ,"published": "1"
+            ,"hidemenu": "1"
+            ,"cacheable": "0"
+            ,"richtext": "0"
             ,"content": "[[!grantOAuth2Tokens]]"
-            ,"template": 0
-            ,"content_type": 7
-            ,"published": 1
-            ,"hidemenu": 1
-            ,"cacheable": 0
-            ,"richtext": 0
         },{
             "pagetitle": "OAuth2 Authorization"
             ,"alias": "auth"
+            ,"template": "0"
+            ,"published": "1"
+            ,"hidemenu": "1"
+            ,"cacheable": "0"
+            ,"richtext": "0"
             ,"content": "[[!authorizeOAuth2]]"
-            ,"template": 0
-            ,"published": 1
-            ,"hidemenu": 1
-            ,"cacheable": 0
-            ,"richtext": 0
         }]
         ,"systemSettings": [{
             "key": "oauth2server.enabled"
-            ,"value": 1
+            ,"value": "1"
         }]
     }
-    ,"build": {
-        "resolver": {
-            
-        }
-    }
+    
 }

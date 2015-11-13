@@ -1,42 +1,28 @@
 <?php
 /**
- * serveOAuth2
+ * grantOAuth2Tokens
  * 
- * Serves as OAuth2 endpoint in MODX
+ * Grants OAuth2 Tokens
  *
  *
  **/
 
-// Options
-
 // Paths
-$corePath = $modx->getOption('oauth2server.core_path', null, $modx->getOption('core_path') . 'components/oauth2server/');
-$oAuth2Path = $corePath . 'model/OAuth2/';
+$oauth2Path = $modx->getOption('oauth2server.core_path', null, $modx->getOption('core_path') . 'components/oauth2server/');
+$oauth2Path .= 'model/';
 
-// Load OAuth2
-require_once($oAuth2Path . 'Autoloader.php');
-OAuth2\Autoloader::register();
-
-// Init storage and server
-$storage = new OAuth2\Storage\Pdo($modx->config['connections'][0]);
-$server = new OAuth2\Server($storage, array('enforce_state' => false));
-
-$server->addGrantType(new OAuth2\GrantType\ClientCredentials($storage));
-$server->addGrantType(new OAuth2\GrantType\AuthorizationCode($storage));
-
-// Process request/response
-$request = OAuth2\Request::createFromGlobals();
-$response = new OAuth2\Response();
-
-// Only handle token requests if POST
-$post = modX::sanitize($_POST, $modx->sanitizePatterns);
-if (!empty($post)) {
-    $server->handleTokenRequest($request)->send();
-} else {
-    // Only handle resource requests if GET
-    if (!$server->verifyResourceRequest($request)) {
-        return $modx->toJSON(array('success' => false, 'message' => 'Unauthorized.'));
-    }
-    // If verified, do stuff:
-    return $modx->toJSON(array('success' => true, 'message' => 'You accessed my APIs!'));
+// Get Class
+if (file_exists($oauth2Path . 'oauth2server.class.php')) $oauth2 = $modx->getService('oauth2server', 'OAuth2Server', $oauth2Path, $scriptProperties);
+if (!($oauth2 instanceof OAuth2Server)) {
+    $modx->log(modX::LOG_LEVEL_ERROR, '[grantOAuth2Tokens] could not load the required class!');
+    return;
 }
+// We need these
+$server = $oauth2->createServer();
+$request = $oauth2->createRequest();
+$response = $oauth2->createResponse();
+if (!$server || !$request || !$response) return;
+
+// Handle Token Requests
+$post = modX::sanitize($_POST, $modx->sanitizePatterns);
+$server->handleTokenRequest($request)->send();

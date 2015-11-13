@@ -4,7 +4,9 @@
  * 
  * OAuth2 Authorization endpoint for MODX
  * Filters requests on the User's MODX User Group Membership, 
- * but also exposes the Manager URL for login!
+ * but also exposes the Manager URL for login! Recommended:
+ * call this snippet in a Login snippet logoutTpl to implement 
+ * custom login page.
  *
  **/
 
@@ -15,39 +17,37 @@ if (!$modx->user) {
 if  (!$modx->user->isMember('Administrator')) return 'Only Administrators can authorize OAuth2 requests.';
 
 // Options
-$authTpl = $modx->getOption('authTpl', $scriptProperties, 'oauth2server_authTpl');
+$authTpl = $modx->getOption('authTpl', $scriptProperties, 'oauth2server_auth_tpl');
 $authKey = $modx->getOption('authKey', $scriptProperties, 'authorize');
 
 // Paths
-$corePath = $modx->getOption('oauth2server.core_path', null, $modx->getOption('core_path') . 'components/oauth2server/');
-$oAuth2Path = $corePath . 'model/OAuth2/';
+$oauth2Path = $modx->getOption('oauth2server.core_path', null, $modx->getOption('core_path') . 'components/oauth2server/');
+$oauth2Path .= 'model/';
 
-// Load OAuth2
-require_once($oAuth2Path . 'Autoloader.php');
-OAuth2\Autoloader::register();
+// Get Class
+if (file_exists($oauth2Path . 'oauth2server.class.php')) $oauth2 = $modx->getService('oauth2server', 'OAuth2Server', $oauth2Path, $scriptProperties);
+if (!($oauth2 instanceof OAuth2Server)) {
+    $modx->log(modX::LOG_LEVEL_ERROR, '[authorizeOAuth2] could not load the required class!');
+    return;
+}
+// We need these
+$server = $oauth2->createServer();
+$request = $oauth2->createRequest();
+$response = $oauth2->createResponse();
+if (!$server || !$request || !$response) return;
 
-// Init storage and server
-$storage = new OAuth2\Storage\Pdo($modx->config['connections'][0]);
-$server = new OAuth2\Server($storage, array('enforce_state' => false));
-
-$server->addGrantType(new OAuth2\GrantType\ClientCredentials($storage));
-$server->addGrantType(new OAuth2\GrantType\AuthorizationCode($storage));
-
-// Do stuff
-$request = OAuth2\Request::createFromGlobals();
-$response = new OAuth2\Response();
-
-// validate the authorize request
+// Validate the authorization request
 if (!$server->validateAuthorizeRequest($request, $response)) {
     return 'The authorization request was invalid.';
 }
-// display an authorization form
+
+// Display an authorization form
 $post = modX::sanitize($_POST, $modx->sanitizePatterns);
 if (empty($post)) {
     return $modx->getChunk($authTpl, array('auth_key' => $authKey));
 }
 
-// print the authorization code if the user has authorized your client
+// Redirect to stored redirect_uri for this client, if authorized
 $is_authorized = ($post[$authKey] === 'yes');
 $server->handleAuthorizeRequest($request, $response, $is_authorized);
 $response->send();

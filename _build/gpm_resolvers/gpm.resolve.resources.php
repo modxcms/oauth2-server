@@ -127,8 +127,8 @@ switch ($options[xPDOTransport::PACKAGE_ACTION]) {
     'tvs' => 
     array (
     ),
-    'template' => 0,
-    'content_type' => 7,
+    'template' => '0',
+    'content_type' => '7',
     'published' => 1,
     'hidemenu' => 1,
     'cacheable' => 0,
@@ -154,7 +154,7 @@ switch ($options[xPDOTransport::PACKAGE_ACTION]) {
     'tvs' => 
     array (
     ),
-    'template' => 0,
+    'template' => '0',
     'published' => 1,
     'hidemenu' => 1,
     'cacheable' => 0,
