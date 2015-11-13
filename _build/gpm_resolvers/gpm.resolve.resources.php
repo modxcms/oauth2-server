@@ -109,10 +109,10 @@ switch ($options[xPDOTransport::PACKAGE_ACTION]) {
         $resources = array (
   0 => 
   array (
-    'pagetitle' => 'Sample OAuth2 Endpoint',
-    'alias' => 'api',
+    'pagetitle' => 'OAuth2 Token Controller',
+    'alias' => 'tokens',
     'parent' => 0,
-    'content' => '[[!serveOAuth2]]',
+    'content' => '[[!grantOAuth2Tokens]]',
     'context_key' => 'web',
     'class_key' => 'modDocument',
     'longtitle' => '',
@@ -136,7 +136,7 @@ switch ($options[xPDOTransport::PACKAGE_ACTION]) {
   ),
   1 => 
   array (
-    'pagetitle' => 'Sample OAuth2 Authorization',
+    'pagetitle' => 'OAuth2 Authorization',
     'alias' => 'auth',
     'parent' => 0,
     'content' => '[[!authorizeOAuth2]]',
