@@ -1,8 +1,8 @@
 <?php
 /**
- * serveOAuth2
+ * verifyOAuth2
  * 
- * Serves an OAuth2 endpoint in MODX
+ * Verifies an OAuth2 request in MODX
  * 
  * OPTIONS:
  * redirectUnauthorized -   (int) Redirects unauthorized requests, preventing anything below this Snippet 
