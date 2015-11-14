@@ -3,7 +3,7 @@
     ,"lowCaseName": "oauth2server"
     ,"description": "Deploy oauth2-server-php alongside MODX."
     ,"author": "YJ Tso"
-    ,"version": "0.2.4"
+    ,"version": "0.4.0"
     ,"package":{
         "elements": {
             "snippets": [{
@@ -45,6 +45,16 @@
             "key": "oauth2server.enabled"
             ,"value": "1"
         }]
+    }
+    ,"database":{
+        "tables": [
+            "OAuth2ServerClients"
+            ,"OAuth2ServerAccessTokens"
+            ,"OAuth2ServerAuthorizationCodes"
+            ,"OAuth2ServerRefreshTokens"
+            ,"OAuth2ServerScopes"
+            ,"OAuth2ServerJwt"
+        ]
     }
     
 }
