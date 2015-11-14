@@ -11,24 +11,24 @@
     <object class="OAuth2ServerAccessTokens" table="oauth2server_access_tokens" extends="xPDOObject">
         <field key="access_token" dbtype="varchar" precision="40" phptype="string" null="false" default="" index="pk" />
         <field key="client_id" dbtype="varchar" precision="80" phptype="string" null="false" default="" />
-        <field key="expires" dbtype="int" precision="20" phptype="timestamp" attributes="unsigned" null="false" default="" />
-        <field key="scope" dbtype="varchar" precision="100" phptype="string" />
-        <field key="user_id" dbtype="varchar" precision="80" phptype="string" />
+        <field key="user_id" dbtype="varchar" precision="255" phptype="string" />
+        <field key="expires" dbtype="timestamp" phptype="timestamp" null="false" default="CURRENT_TIMESTAMP" attributes="ON UPDATE CURRENT_TIMESTAMP" />
+        <field key="scope" dbtype="varchar" precision="2000" phptype="string" />
     </object> 
     <object class="OAuth2ServerAuthorizationCodes" table="oauth2server_authorization_codes" extends="xPDOObject">
         <field key="authorization_code" dbtype="varchar" precision="40" phptype="string" null="false" default="" index="pk" />
         <field key="client_id" dbtype="varchar" precision="80" phptype="string" null="false" default="" />
+        <field key="user_id" dbtype="varchar" precision="255" phptype="string" />
         <field key="redirect_uri" dbtype="varchar" precision="2000" phptype="string" />
-        <field key="expires" dbtype="int" precision="20" phptype="timestamp" attributes="unsigned" null="false" default="" />
-        <field key="scope" dbtype="varchar" precision="100" phptype="string" />
-        <field key="user_id" dbtype="varchar" precision="80" phptype="string" />
+        <field key="expires" dbtype="timestamp" phptype="timestamp" null="false" default="CURRENT_TIMESTAMP" attributes="ON UPDATE CURRENT_TIMESTAMP" />
+        <field key="scope" dbtype="varchar" precision="2000" phptype="string" />
     </object>    
     <object class="OAuth2ServerRefreshTokens" table="oauth2server_refresh_tokens" extends="xPDOObject">
         <field key="refresh_token" dbtype="varchar" precision="40" phptype="string" null="false" default="" index="pk" />
         <field key="client_id" dbtype="varchar" precision="80" phptype="string" null="false" default="" />
-        <field key="expires" dbtype="int" precision="20" phptype="timestamp" attributes="unsigned" null="false" default="" />
-        <field key="scope" dbtype="varchar" precision="100" phptype="string" />
-        <field key="user_id" dbtype="varchar" precision="80" phptype="string" />
+        <field key="user_id" dbtype="varchar" precision="255" phptype="string" />
+        <field key="expires" dbtype="timestamp" phptype="timestamp" null="false" default="CURRENT_TIMESTAMP" attributes="ON UPDATE CURRENT_TIMESTAMP" />
+        <field key="scope" dbtype="varchar" precision="2000" phptype="string" />
     </object>     
     <object class="OAuth2ServerScopes" table="oauth2server_scopes" extends="xPDOObject">
         <field key="scope" dbtype="text" phptype="string" />

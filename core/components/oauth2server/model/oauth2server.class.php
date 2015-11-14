@@ -49,6 +49,14 @@ class OAuth2Server
                 'always_issue_new_refresh_token' => true,
                 'unset_refresh_token_after_use' => false,
                 'refresh_token_lifetime' => 15552000, //180 days
+            ),
+            'tables' => array(
+                'client_table' => 'modx_oauth2server_clients',
+                'access_token_table' => 'modx_oauth2server_access_tokens',
+                'refresh_token_table' => 'modx_oauth2server_refresh_tokens',
+                'code_table' => 'modx_oauth2server_authorization_codes',
+                'jwt_table'  => 'modx_oauth2server_jwt',
+                'scope_table'  => 'modx_oauth2server_scopes',
             )
         ), $options);
         
@@ -65,13 +73,20 @@ class OAuth2Server
     public function createServer()
     {
     
-        // Init storage and server
-        $storage = new OAuth2\Storage\Pdo($this->modx->config['connections'][0]);
+        // Init storage
+        $storage = new OAuth2\Storage\Pdo($this->modx->config['connections'][0], $this->options['tables']);
+        if (!$storage instanceof OAuth2\Storage\Pdo) {
+            
+            $this->modx->log(modX::LOG_LEVEL_ERROR, '[OAuth2Server] could not load a valid storage class!');
+            return null;
+            
+        }
+        // Init server
         $server = new OAuth2\Server($storage, $this->options['server']);
         
-        if ((!$storage instanceof OAuth2\Storage\Pdo) || (!$server instanceof OAuth2\Server)) {
+        if (!$server instanceof OAuth2\Server) {
             
-            $this->modx->log(modX::LOG_LEVEL_ERROR, '[OAuth2Server] could not load a valid server!');
+            $this->modx->log(modX::LOG_LEVEL_ERROR, '[OAuth2Server] could not load a valid server class!');
             return null;
             
         }

@@ -11,10 +11,10 @@ $xpdo_meta_map['OAuth2ServerAuthorizationCodes']= array (
   array (
     'authorization_code' => '',
     'client_id' => '',
-    'redirect_uri' => NULL,
-    'expires' => 0,
-    'scope' => NULL,
     'user_id' => NULL,
+    'redirect_uri' => NULL,
+    'expires' => 'CURRENT_TIMESTAMP',
+    'scope' => NULL,
   ),
   'fieldMeta' => 
   array (
@@ -35,6 +35,12 @@ $xpdo_meta_map['OAuth2ServerAuthorizationCodes']= array (
       'null' => false,
       'default' => '',
     ),
+    'user_id' => 
+    array (
+      'dbtype' => 'varchar',
+      'precision' => '255',
+      'phptype' => 'string',
+    ),
     'redirect_uri' => 
     array (
       'dbtype' => 'varchar',
@@ -43,23 +49,16 @@ $xpdo_meta_map['OAuth2ServerAuthorizationCodes']= array (
     ),
     'expires' => 
     array (
-      'dbtype' => 'int',
-      'precision' => '20',
+      'dbtype' => 'timestamp',
       'phptype' => 'timestamp',
-      'attributes' => 'unsigned',
       'null' => false,
-      'default' => 0,
+      'default' => 'CURRENT_TIMESTAMP',
+      'attributes' => 'ON UPDATE CURRENT_TIMESTAMP',
     ),
     'scope' => 
     array (
       'dbtype' => 'varchar',
-      'precision' => '100',
-      'phptype' => 'string',
-    ),
-    'user_id' => 
-    array (
-      'dbtype' => 'varchar',
-      'precision' => '80',
+      'precision' => '2000',
       'phptype' => 'string',
     ),
   ),
