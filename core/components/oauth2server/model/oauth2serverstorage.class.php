@@ -8,16 +8,9 @@ use OAuth2\OpenID\Storage\AuthorizationCodeInterface as OpenIDAuthorizationCodeI
 /**
  * MODX (xPDO) storage for all storage types
  *
- * NOTE: This class is meant to get users started
- * quickly. If your application requires further
- * customization, extend this class or create your own.
- *
- * NOTE: Passwords are stored in plaintext, which is never
- * a good idea.  Be sure to override this for your application
- *
- * @author Brent Shaffer <bshafs at gmail dot com>
+ * 
  */
-class Pdo implements
+class OAuth2ServerStorage implements
     AuthorizationCodeInterface,
     AccessTokenInterface,
     ClientCredentialsInterface,
@@ -31,32 +24,56 @@ class Pdo implements
 {
     protected $db;
     protected $config;
-
-    public function __construct($connection, $config = array())
+    public $modx = null;
+    public $namespace = 'oauth2server';
+    
+        public function __construct(modX &$modx, array $options = array())
     {
-        if (!$connection instanceof \PDO) {
-            if (is_string($connection)) {
-                $connection = array('dsn' => $connection);
-            }
-            if (!is_array($connection)) {
-                throw new \InvalidArgumentException('First argument to OAuth2\Storage\Pdo must be an instance of PDO, a DSN string, or a configuration array');
-            }
-            if (!isset($connection['dsn'])) {
-                throw new \InvalidArgumentException('configuration array must contain "dsn"');
-            }
-            // merge optional parameters
-            $connection = array_merge(array(
-                'username' => null,
-                'password' => null,
-                'options' => array(),
-            ), $connection);
-            $connection = new \PDO($connection['dsn'], $connection['username'], $connection['password'], $connection['options']);
-        }
-        $this->db = $connection;
+        $this->modx =& $modx;
+        $this->namespace = $this->getOption('namespace', $options, 'oauth2server');
 
-        // debugging
-        $connection->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
+        $corePath = $this->getOption('core_path', $options, $this->modx->getOption('core_path', null, MODX_CORE_PATH) . 'components/oauth2server/');
+        $assetsPath = $this->getOption('assets_path', $options, $this->modx->getOption('assets_path', null, MODX_ASSETS_PATH) . 'components/oauth2server/');
+        $assetsUrl = $this->getOption('assets_url', $options, $this->modx->getOption('assets_url', null, MODX_ASSETS_URL) . 'components/oauth2server/');
 
+        /* loads some default paths for easier management */
+        $this->options = array_merge(array(
+            'namespace' => $this->namespace,
+            'corePath' => $corePath,
+            'modelPath' => $corePath . 'model/',
+            'oauth2Path' => $corePath . 'model/OAuth2/',
+            'chunksPath' => $corePath . 'elements/chunks/',
+            'snippetsPath' => $corePath . 'elements/snippets/',
+            'assetsPath' => $assetsPath,
+            'assetsUrl' => $assetsUrl,
+            'jsUrl' => $assetsUrl . 'js/',
+            'cssUrl' => $assetsUrl . 'css/',
+            'server' => array(
+                'use_jwt_access_tokens'        => false,
+                'store_encrypted_token_string' => true,
+                'use_openid_connect'       => false,
+                'id_lifetime'              => 3600,
+                'access_lifetime'          => 7776000, //90 days
+                'www_realm'                => 'Service',
+                'token_param_name'         => 'access_token',
+                'token_bearer_header_name' => 'Bearer',
+                'enforce_state'            => false,
+                'require_exact_redirect_uri' => false,
+                'allow_implicit'           => false,
+                'allow_credentials_in_request_body' => true,
+                'allow_public_clients'     => true,
+                'always_issue_new_refresh_token' => true,
+                'unset_refresh_token_after_use' => false,
+                'refresh_token_lifetime' => 15552000, //180 days
+            )
+        ), $options);
+        
+        // Load OAuth2
+        require_once($this->options['oauth2Path'] . 'Autoloader.php');
+        OAuth2\Autoloader::register();
+               
+    }
+/*
         $this->config = array_merge(array(
             'client_table' => 'oauth_clients',
             'access_token_table' => 'oauth_access_tokens',
@@ -68,7 +85,7 @@ class Pdo implements
             'scope_table'  => 'oauth_scopes',
             'public_key_table'  => 'oauth_public_keys',
         ), $config);
-    }
+*/
 
     /* OAuth2\Storage\ClientCredentialsInterface */
     public function checkClientCredentials($client_id, $client_secret = null)
