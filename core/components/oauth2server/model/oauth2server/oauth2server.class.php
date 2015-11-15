@@ -19,12 +19,13 @@ class OAuth2Server
         $corePath = $this->getOption('core_path', $options, $this->modx->getOption('core_path', null, MODX_CORE_PATH) . 'components/oauth2server/');
         $assetsPath = $this->getOption('assets_path', $options, $this->modx->getOption('assets_path', null, MODX_ASSETS_PATH) . 'components/oauth2server/');
         $assetsUrl = $this->getOption('assets_url', $options, $this->modx->getOption('assets_url', null, MODX_ASSETS_URL) . 'components/oauth2server/');
-
+        $dbPrefix = $this->getOption('table_prefix', $options, $this->modx->getOption('table_prefix', null, 'modx_'));
+        
         /* loads some default paths for easier management */
         $this->options = array_merge(array(
             'namespace' => $this->namespace,
             'corePath' => $corePath,
-            'modelPath' => $corePath . 'model/',
+            'modelPath' => $corePath . 'model/oauth2server/',
             'oauth2Path' => $corePath . 'model/OAuth2/',
             'chunksPath' => $corePath . 'elements/chunks/',
             'snippetsPath' => $corePath . 'elements/snippets/',
@@ -51,12 +52,12 @@ class OAuth2Server
                 'refresh_token_lifetime' => 15552000, //180 days
             ),
             'tables' => array(
-                'client_table' => 'modx_oauth2server_clients',
-                'access_token_table' => 'modx_oauth2server_access_tokens',
-                'refresh_token_table' => 'modx_oauth2server_refresh_tokens',
-                'code_table' => 'modx_oauth2server_authorization_codes',
-                'jwt_table'  => 'modx_oauth2server_jwt',
-                'scope_table'  => 'modx_oauth2server_scopes',
+                'client_table' => $dbPrefix . 'oauth2server_clients',
+                'access_token_table' => $dbPrefix . 'oauth2server_access_tokens',
+                'refresh_token_table' => $dbPrefix . 'oauth2server_refresh_tokens',
+                'code_table' => $dbPrefix . 'oauth2server_authorization_codes',
+                'jwt_table'  => $dbPrefix . 'oauth2server_jwt',
+                'scope_table'  => $dbPrefix . 'oauth2server_scopes',
             )
         ), $options);
         

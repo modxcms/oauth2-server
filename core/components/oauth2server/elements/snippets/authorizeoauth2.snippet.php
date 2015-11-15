@@ -22,7 +22,7 @@ $authKey = $modx->getOption('authKey', $scriptProperties, 'authorize');
 
 // Paths
 $oauth2Path = $modx->getOption('oauth2server.core_path', null, $modx->getOption('core_path') . 'components/oauth2server/');
-$oauth2Path .= 'model/';
+$oauth2Path .= 'model/oauth2server/';
 
 // Get Class
 if (file_exists($oauth2Path . 'oauth2server.class.php')) $oauth2 = $modx->getService('oauth2server', 'OAuth2Server', $oauth2Path, $scriptProperties);
