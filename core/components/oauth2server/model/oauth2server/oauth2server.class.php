@@ -63,7 +63,7 @@ class OAuth2Server
             )
         ), $options);
         
-        $this->modx->addPackage('oauth2server', $this->getOption('modelPath'));
+        $this->modx->addPackage('oauth2server', $this->options['modelPath']);
         $this->modx->lexicon->load('oauth2server:default');
         
         // Load OAuth2

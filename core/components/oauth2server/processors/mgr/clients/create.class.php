@@ -8,6 +8,7 @@
 class OAuth2ServerClientsCreateProcessor extends modObjectCreateProcessor {
     public $classKey = 'OAuth2ServerClients';
     public $languageTopics = array('oauth2server:default');
+    public $primaryKeyField = 'client_id';
     public $objectType = 'oauth2server.clients';
     /** @var OAuth2ServerClient */
     public $object;
@@ -36,8 +37,8 @@ class OAuth2ServerClientsCreateProcessor extends modObjectCreateProcessor {
     public function afterSave()
     {
         /** @var xPDOFileCache $provider */
-        $provider = $this->modx->cacheManager->getCacheProvider('oauth2server');
-        $provider->flush();
+        //$provider = $this->modx->cacheManager->getCacheProvider('oauth2server');
+        //$provider->flush();
 
         return parent::afterSave();
     }

@@ -8,6 +8,7 @@
 class OAuth2ServerClientsRemoveProcessor extends modObjectRemoveProcessor {
     public $classKey = 'OAuth2ServerClients';
     public $languageTopics = array('oauth2server:default');
+    public $primaryKeyField = 'client_id';
     public $objectType = 'oauth2server.clients';
     /** @var OAuth2ServerClients */
     public $object;
