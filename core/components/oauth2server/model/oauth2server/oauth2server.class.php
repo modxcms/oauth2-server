@@ -29,10 +29,12 @@ class OAuth2Server
             'oauth2Path' => $corePath . 'model/OAuth2/',
             'chunksPath' => $corePath . 'elements/chunks/',
             'snippetsPath' => $corePath . 'elements/snippets/',
+            'templatesPath' => $corePath . 'templates/',
             'assetsPath' => $assetsPath,
             'assetsUrl' => $assetsUrl,
             'jsUrl' => $assetsUrl . 'js/',
             'cssUrl' => $assetsUrl . 'css/',
+            'connectorUrl' => $assetsUrl . 'connector.php',
             'server' => array(
                 'use_jwt_access_tokens'        => false,
                 'store_encrypted_token_string' => true,
@@ -60,6 +62,9 @@ class OAuth2Server
                 'scope_table'  => $dbPrefix . 'oauth2server_scopes',
             )
         ), $options);
+        
+        $this->modx->addPackage('oauth2server', $this->getOption('modelPath'));
+        $this->modx->lexicon->load('oauth2server:default');
         
         // Load OAuth2
         require_once($this->options['oauth2Path'] . 'Autoloader.php');
