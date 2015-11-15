@@ -48,9 +48,9 @@ oauth2server.grid.OAuth2ServerClients = function(config) {
             ,scope: this
         }]
     });
-    oauth2server.grid.Oauth2ServerClients.superclass.constructor.call(this,config);
+    oauth2server.grid.OAuth2ServerClients.superclass.constructor.call(this,config);
 };
-Ext.extend(oauth2server.grid.Oauth2ServerClients,MODx.grid.Grid,{
+Ext.extend(oauth2server.grid.OAuth2ServerClients,MODx.grid.Grid,{
     filters: []
     
     ,getMenu: function() {
@@ -84,7 +84,7 @@ Ext.extend(oauth2server.grid.Oauth2ServerClients,MODx.grid.Grid,{
     }
 
     ,updateClient: function(btn,e) {
-        if (!this.menu.record || !this.menu.record.id) return false;
+        if (!this.menu.record || !this.menu.record.client_id) return false;
         
         var updateClient = MODx.load({
             xtype: 'oauth2server-window-clients'
@@ -101,7 +101,7 @@ Ext.extend(oauth2server.grid.Oauth2ServerClients,MODx.grid.Grid,{
     }
     
     ,duplicateClient: function(btn,e) {
-        if (!this.menu.record || !this.menu.record.id) return false;
+        if (!this.menu.record || !this.menu.record.client_id) return false;
         
         var duplicateClient = MODx.load({
             xtype: 'oauth2server-window-clients'

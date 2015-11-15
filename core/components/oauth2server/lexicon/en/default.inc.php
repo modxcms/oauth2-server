@@ -8,7 +8,7 @@
 
 $_lang['oauth2server'] = 'oauth2server';
 
-$_lang['oauth2server.menu.manage'] = 'Manage oauth2server';
+$_lang['oauth2server.menu.manage'] = 'OAuth2Server';
 $_lang['oauth2server.menu.manage_desc'] = 'Manage Access Tokens and Client';
 
 $_lang['oauth2server.global.search'] = 'Search';
