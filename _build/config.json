@@ -3,8 +3,15 @@
     ,"lowCaseName": "oauth2server"
     ,"description": "Deploy oauth2-server-php alongside MODX."
     ,"author": "YJ Tso"
-    ,"version": "0.4.3"
+    ,"version": "0.5.0"
     ,"package":{
+        "menus": [
+          {
+            "text": "oauth2server.menu.manage",
+            "description": "oauth2server.menu.manage_desc",
+            "action": "manage"
+          }
+        ],
         "elements": {
             "snippets": [{
                 "name": "verifyOAuth2",

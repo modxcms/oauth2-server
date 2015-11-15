@@ -12,7 +12,7 @@ class OAuth2ServerManageManagerController extends OAuth2ServerBaseManagerControl
     }
     public function getPageTitle() { return $this->modx->lexicon('oauth2server'); }
     public function loadCustomCssJs() {
-        $this->addJavascript($this->oauth2server->getOption('jsUrl').'mgr/extras/combos.js');
+        /*$this->addJavascript($this->oauth2server->getOption('jsUrl').'mgr/extras/combos.js');*/
         
         $this->addJavascript($this->oauth2server->getOption('jsUrl').'mgr/widgets/clients.window.js');
         /*$this->addJavascript($this->oauth2server->getOption('jsUrl').'mgr/widgets/special_dates.window.js');*/

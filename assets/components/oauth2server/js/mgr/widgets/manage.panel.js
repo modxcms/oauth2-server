@@ -14,7 +14,7 @@ oauth2server.panel.Manage = function(config) {
             ,border: true
             ,activeTab: 0
             ,hideMode: 'offsets'
-            ,items: [/*{
+            ,items: [{
                 title: _('oauth2server.access_tokens.access_tokens')
                 ,items: [{
                     html: '<p>'+_('oauth2server.access_tokens.intro_msg')+'</p>'
@@ -25,7 +25,7 @@ oauth2server.panel.Manage = function(config) {
                     ,preventRender: true
                     ,cls: 'main-wrapper'
                 }]
-            },*/{
+            },{
                 title: _('oauth2server.clients.clients')
                 ,items: [{
                     html: '<p>'+_('oauth2server.clients.intro_msg')+'</p>'
