@@ -38,6 +38,22 @@ class OAuth2ServerClientsCreateProcessor extends modObjectCreateProcessor {
             $this->addFieldError('redirect_uri', $this->modx->lexicon('oauth2server.err.clients.redirect_uri_empty'));
         }
         
+        $grantTypes = $this->getProperty('grant_types');
+        if (empty($grantTypes)) {
+            $this->setProperty('grant_types', NULL);
+        }
+        
+        $scope = $this->getProperty('scope');
+        if (empty($scope)) {
+            $this->setProperty('scope', NULL);
+        }
+        
+        $userId = $this->getProperty('user_id');
+        $modxUser = $this->modx->user->get('id');
+        if (empty($userId)) {
+            $this->setProperty('user_id', $modxUser);
+        }
+        
         return parent::beforeSet();
     }
 

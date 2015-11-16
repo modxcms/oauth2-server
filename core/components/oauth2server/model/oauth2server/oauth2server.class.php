@@ -10,6 +10,7 @@ class OAuth2Server
     public $modx = null;
     public $namespace = 'oauth2server';
     public $options = array();
+    protected $tablenames = array();
 
     public function __construct(modX &$modx, array $options = array())
     {
@@ -21,7 +22,7 @@ class OAuth2Server
         $assetsUrl = $this->getOption('assets_url', $options, $this->modx->getOption('assets_url', null, MODX_ASSETS_URL) . 'components/oauth2server/');
         $dbPrefix = $this->getOption('table_prefix', $options, $this->modx->getOption('table_prefix', null, 'modx_'));
         
-        /* loads some default paths for easier management */
+        /* load config defaults */
         $this->options = array_merge(array(
             'namespace' => $this->namespace,
             'corePath' => $corePath,
@@ -53,15 +54,18 @@ class OAuth2Server
                 'unset_refresh_token_after_use' => false,
                 'refresh_token_lifetime' => 15552000, //180 days
             ),
-            'tables' => array(
-                'client_table' => $dbPrefix . 'oauth2server_clients',
-                'access_token_table' => $dbPrefix . 'oauth2server_access_tokens',
-                'refresh_token_table' => $dbPrefix . 'oauth2server_refresh_tokens',
-                'code_table' => $dbPrefix . 'oauth2server_authorization_codes',
-                'jwt_table'  => $dbPrefix . 'oauth2server_jwt',
-                'scope_table'  => $dbPrefix . 'oauth2server_scopes',
-            )
+
         ), $options);
+        
+        /* load table names for OAuth2 PDO driver */
+        $this->tablenames = array(
+            'client_table' => $dbPrefix . 'oauth2server_clients',
+            'access_token_table' => $dbPrefix . 'oauth2server_access_tokens',
+            'refresh_token_table' => $dbPrefix . 'oauth2server_refresh_tokens',
+            'code_table' => $dbPrefix . 'oauth2server_authorization_codes',
+            'jwt_table'  => $dbPrefix . 'oauth2server_jwt',
+            'scope_table'  => $dbPrefix . 'oauth2server_scopes',
+        );
         
         $this->modx->addPackage('oauth2server', $this->options['modelPath'], $this->modx->config['table_prefix']);
         $this->modx->lexicon->load('oauth2server:default');
@@ -80,7 +84,7 @@ class OAuth2Server
     {
     
         // Init storage
-        $storage = new OAuth2\Storage\Pdo($this->modx->config['connections'][0], $this->options['tables']);
+        $storage = new OAuth2\Storage\Pdo($this->modx->config['connections'][0], $this->tablenames);
         if (!$storage instanceof OAuth2\Storage\Pdo) {
             
             $this->modx->log(modX::LOG_LEVEL_ERROR, '[OAuth2Server] could not load a valid storage class!');

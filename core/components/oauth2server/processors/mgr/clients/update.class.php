@@ -32,8 +32,18 @@ class OAuth2ServerClientsUpdateProcessor extends modObjectUpdateProcessor {
         if (empty($redirectUri)) {
             $this->addFieldError('redirect_uri', $this->modx->lexicon('oauth2server.err.clients.redirect_uri_empty'));
         }
-
+        
+        $grantTypes = $this->getProperty('grant_types');
+        if (empty($grantTypes)) {
+            $this->setProperty('grant_types', NULL);
+        }
+        
+        $scope = $this->getProperty('scope');
+        if (empty($scope)) {
+            $this->setProperty('scope', NULL);
+        }
         return parent::beforeSet();
+        
     }
 
     public function afterSave()

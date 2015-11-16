@@ -3,7 +3,7 @@
     ,"lowCaseName": "oauth2server"
     ,"description": "Deploy oauth2-server-php alongside MODX."
     ,"author": "YJ Tso"
-    ,"version": "0.6.3"
+    ,"version": "0.6.4"
     ,"package":{
         "menus": [
           {
