@@ -13,8 +13,9 @@ class OAuth2ServerClientsUpdateProcessor extends modObjectUpdateProcessor {
     public $objectType = 'oauth2server.clients';
     /** @var OAuth2ServerClients */
     public $object;
-
+        
     public function beforeSet() {
+    
         $clientId = $this->getProperty('client_id');
         if (empty($clientId)) {
             $this->addFieldError('client_id', $this->modx->lexicon('oauth2server.err.clients.client_id_empty'));
@@ -43,5 +44,6 @@ class OAuth2ServerClientsUpdateProcessor extends modObjectUpdateProcessor {
 
         return parent::afterSave();
     }
+    
 }
 return 'OAuth2ServerClientsUpdateProcessor';

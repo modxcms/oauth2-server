@@ -54,8 +54,10 @@ $_lang['oauth2server.err.access_tokens.link'] = 'Link is not and URL. Example li
 */
 
 $_lang['oauth2server.err.clients.client_id_empty'] = 'Client ID is required.';
+$_lang['oauth2server.err.clients.client_id_exists'] = 'Please select a unique Client ID';
+$_lang['oauth2server.clients_err_nfs'] = 'Error saving. Cannot change client_id on update.';
+$_lang['oauth2server.clients_err_ns'] = 'Error saving. Ensure client_id is not empty.';
 $_lang['oauth2server.err.clients.redirect_uri_empty'] = 'Redirect URI is required.';
-/*$_lang['oauth2server.err.clients.real_ctx_exists'] = 'This Real temperature is already mapped within selected context.';*/
 
 $_lang['oauth2server.err.item_name_ae'] = 'An Item already exists with that name.';
 $_lang['oauth2server.err.item_nf'] = 'Item not found.';

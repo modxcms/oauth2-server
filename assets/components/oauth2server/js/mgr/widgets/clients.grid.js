@@ -12,32 +12,32 @@ oauth2server.grid.OAuth2ServerClients = function(config) {
         ,paging: true
         ,remoteSort: true
         ,columns: [{
-            header: _('client_id')
+            header: _('oauth2server.clients.client_id')
             ,dataIndex: 'client_id'
             ,sortable: true
             ,width: 60
         },{
-            header: _('client_secret')
+            header: _('oauth2server.clients.client_secret')
             ,dataIndex: 'client_secret'
             ,sortable: true
             ,width: 160
         },{
-            header: _('redirect_uri')
+            header: _('oauth2server.clients.redirect_uri')
             ,dataIndex: 'redirect_uri'
             ,sortable: true
             ,width: 180
         },{
-            header: _('grant_types')
+            header: _('oauth2server.clients.grant_types')
             ,dataIndex: 'grant_types'
             ,sortable: true
             ,width: 60
         },{
-            header: _('scope')
+            header: _('oauth2server.clients.scope')
             ,dataIndex: 'scope'
             ,sortable: true
             ,width: 60
         },{
-            header: _('user_id')
+            header: _('oauth2server.clients.user_id')
             ,dataIndex: 'user_id'
             ,sortable: true
             ,width: 50
@@ -81,6 +81,7 @@ Ext.extend(oauth2server.grid.OAuth2ServerClients,MODx.grid.Grid,{
         });
 
         addClient.show(e.target);
+
     }
 
     ,updateClient: function(btn,e) {
@@ -88,9 +89,35 @@ Ext.extend(oauth2server.grid.OAuth2ServerClients,MODx.grid.Grid,{
         
         var updateClient = MODx.load({
             xtype: 'oauth2server-window-clients'
-            ,title: _('oauth2server.clients.update')
+            ,title: _('oauth2server.clients.update') + this.menu.record.client_id
             ,action: 'mgr/clients/update'
             ,record: this.menu.record
+            ,fields: [{
+                xtype: 'hidden'
+                ,fieldLabel: _('oauth2server.clients.client_id')
+                ,name: 'client_id'
+                ,anchor: '100%'
+            },{
+                xtype: 'textfield'
+                ,fieldLabel: _('oauth2server.clients.client_secret')
+                ,name: 'client_secret'
+                ,anchor: '100%'
+            },{
+                xtype: 'textfield'
+                ,fieldLabel: _('oauth2server.clients.redirect_uri')
+                ,name: 'redirect_uri'
+                ,anchor: '100%'
+            },{
+                xtype: 'textfield'
+                ,fieldLabel: _('oauth2server.clients.grant_types')
+                ,name: 'grant_types'
+                ,anchor: '100%'
+            },{
+                xtype: 'textfield'
+                ,fieldLabel: _('oauth2server.clients.scope')
+                ,name: 'scope'
+                ,anchor: '100%'
+            }]
             ,listeners: {
                 'success': {fn:function() { this.refresh(); },scope:this}
             }
@@ -98,6 +125,7 @@ Ext.extend(oauth2server.grid.OAuth2ServerClients,MODx.grid.Grid,{
 
         updateClient.show(e.target);
         updateClient.setValues(this.menu.record);
+        
     }
     
     ,duplicateClient: function(btn,e) {
