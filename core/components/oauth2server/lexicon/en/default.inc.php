@@ -23,7 +23,7 @@ $_lang['oauth2server.access_tokens.access_token'] = 'Access Token';
 $_lang['oauth2server.access_tokens.expires'] = 'Expires';
 $_lang['oauth2server.access_tokens.scope'] = 'Scope';
 $_lang['oauth2server.access_tokens.user_id'] = 'User ID';
-$_lang['oauth2server.access_tokens.remove'] = 'Remove Date';
+$_lang['oauth2server.access_tokens.remove'] = 'Remove Access Token';
 $_lang['oauth2server.access_tokens.remove_confirm'] = 'Are you sure you want to remove this Access Token?';
 /*
 $_lang['oauth2server.access_tokens.filter_by_date'] = 'Filter by Date';
