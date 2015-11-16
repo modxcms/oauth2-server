@@ -23,4 +23,4 @@ class OAuth2ServerAccessTokensRemoveProcessor extends modObjectRemoveProcessor {
     }
 }
 
-return 'OAuth2ServerAccessTokenRemoveProcessor';
+return 'OAuth2ServerAccessTokensRemoveProcessor';
