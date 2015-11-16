@@ -25,7 +25,7 @@ oauth2server.panel.Manage = function(config) {
                     ,preventRender: true
                     ,cls: 'main-wrapper'
                 }]
-            }/*,{
+            },{
                 title: _('oauth2server.access_tokens.access_tokens')
                 ,items: [{
                     html: '<p>'+_('oauth2server.access_tokens.intro_msg')+'</p>'
@@ -36,7 +36,7 @@ oauth2server.panel.Manage = function(config) {
                     ,preventRender: true
                     ,cls: 'main-wrapper'
                 }]
-            }*/]
+            }]
         }]
     });
     oauth2server.panel.Manage.superclass.constructor.call(this,config);
