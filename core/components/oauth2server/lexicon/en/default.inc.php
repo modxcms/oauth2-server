@@ -18,16 +18,13 @@ $_lang['oauth2server.global.clear_filters'] = 'Clear Filters';
 $_lang['oauth2server.access_tokens.access_tokens'] = 'Access Tokens';
 $_lang['oauth2server.access_tokens.intro_msg'] = 'Manage Access Tokens here.';
 
-$_lang['oauth2server.access_tokens.add'] = 'Add Access Token';
-/*$_lang['oauth2server.access_tokens.date'] = 'Date';
-$_lang['oauth2server.access_tokens.contexts'] = 'Contexts';
-$_lang['oauth2server.access_tokens.icon'] = 'Icon';
-$_lang['oauth2server.access_tokens.link'] = 'Link';
-*/
+$_lang['oauth2server.access_tokens.client_id'] = 'Client ID';
+$_lang['oauth2server.access_tokens.access_token'] = 'Access Token';
+$_lang['oauth2server.access_tokens.expires'] = 'Expires';
+$_lang['oauth2server.access_tokens.scope'] = 'Scope';
+$_lang['oauth2server.access_tokens.user_id'] = 'User ID';
 $_lang['oauth2server.access_tokens.remove'] = 'Remove Date';
 $_lang['oauth2server.access_tokens.remove_confirm'] = 'Are you sure you want to remove this Access Token?';
-$_lang['oauth2server.access_tokens.update'] = 'Update Date';
-$_lang['oauth2server.access_tokens.duplicate'] = 'Duplicate Date';
 /*
 $_lang['oauth2server.access_tokens.filter_by_date'] = 'Filter by Date';
 $_lang['oauth2server.access_tokens.filter_by_context'] = 'Filter by Context';
