@@ -25,7 +25,7 @@ class OAuth2Server
         $this->options = array_merge(array(
             'namespace' => $this->namespace,
             'corePath' => $corePath,
-            'modelPath' => $corePath . 'model/oauth2server/',
+            'modelPath' => $corePath . 'model/',
             'oauth2Path' => $corePath . 'model/OAuth2/',
             'chunksPath' => $corePath . 'elements/chunks/',
             'snippetsPath' => $corePath . 'elements/snippets/',
@@ -63,7 +63,7 @@ class OAuth2Server
             )
         ), $options);
         
-        $this->modx->addPackage('oauth2server', $this->options['modelPath']);
+        $this->modx->addPackage('oauth2server', $this->options['modelPath'], $this->modx->config['table_prefix']);
         $this->modx->lexicon->load('oauth2server:default');
         
         // Load OAuth2
