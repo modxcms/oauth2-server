@@ -5,10 +5,10 @@
  * Verifies an OAuth2 request in MODX
  * 
  * OPTIONS:
- * redirectUnauthorized -   (int) Redirects unauthorized requests, preventing anything below this Snippet 
- *                          in the Resource/Template from being processed. If disabled, return values can
- *                          be customized below. Default 1 
- * redirectTo -             (string) Accepts either 'error' or 'unauthorized' page, to which to redirect users. 
+ * redirectUnauthorized -   (int) Sends unauthorized response, preventing anything below this Snippet 
+ *                          in the Resource/Template from being processed. If disabled, exit() WILL NOT
+ *                          be called!. Return values can be customized in the properties below. Default 1 
+ * redirectTo -             (string) Accepts either 'error' or 'unauthorized'. Both methods call exit(). 
  *                          Default 'unauthorized'
  * returnOnUnauthorized -   (mixed) Specify a return value if request is unauthorized. Default 0
  * returnOnSuccess -        (mixed) Specify a return value if request is successfully verified. Default 1
@@ -45,9 +45,9 @@ $verified = $server->verifyResourceRequest($request);
 if (!$verified) {
     if ($redirectUnauthorized) {
         if ($redirectTo === 'error') {
-            $modx->sendErrorPage();
+            $modx->sendError();
         } else {
-            $modx->sendUnauthorizedPage();
+            $oauth2->sendUnauthorized();
         }
     } else {
         return $returnOnUnauthorized;

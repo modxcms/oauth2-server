@@ -14,7 +14,8 @@ if ($object->xpdo) {
         case xPDOTransport::ACTION_INSTALL:
         case xPDOTransport::ACTION_UPGRADE:
             $modelPath = $modx->getOption('oauth2server.core_path', null, $modx->getOption('core_path') . 'components/oauth2server/') . 'model/';
-            $modx->addPackage('oauth2server', $modelPath);
+            $modx->addPackage('oauth2server', $modelPath, 'modx_');
+
 
             $manager = $modx->getManager();
 

@@ -142,6 +142,21 @@ class OAuth2Server
         return $response;
         
     } 
+    
+    /**
+     * Send unauthorized without redirect, and exit.
+     *
+     */
+    public function sendUnauthorized($exit = true) {
+        if (!$exit) {
+            $this->modx->sendUnauthorizedPage();
+        } else {
+            header('HTTP/1.1 401 Unauthorized');
+            @session_write_close();
+            exit(0);
+        }
+    }
+    
      
     /* UTILITY METHODS (@theboxer) */
     /**
