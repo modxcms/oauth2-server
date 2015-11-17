@@ -9,10 +9,10 @@ Potential use cases include:
 - Trigger actions on integrated platforms using authenticated REST hooks
 
 ## Security
-The OAuth2Server Extra doesn't grant any permissions whatsoever, on its own. It only provides way to grant, manage, revoke and verify *access tokens*. Call the convenience snippet `[[!verifyOAuth2]]` in your Resource/Template, and the Resource will return an unauthorized or error response, if the request isn't accompanied by a valid access token. You can choose to do whatever you like, with the verified request—the possibilities are endless.
+The OAuth2Server Extra doesn't grant any permissions whatsoever, on its own. It only provides a way to grant, manage, revoke and verify *access tokens*. Call the Snippet `[[!verifyOAuth2]]` in your Resource/Template, and the Resource will return an unauthorized or error response, if the request isn't accompanied by a valid access token. You can choose to do whatever you like, with the verified request—the possibilities are endless.
 
 ## Usage
-_The instructions below assuming the default configuration for the OAuth2Server Extra_
+_The instructions below assume the default configuration for the OAuth2Server Extra._
 
 ### Granting an Access Token to a 3rd Party
 1. Install the OAuth2Server Extra via the Extras Installer in MODX Revolution. Hard-refresh your manager window after installing, as with any Extra.
@@ -54,19 +54,19 @@ Call the `[[!verifyOAuth2]]` Snippet in any Resource/Template, to which you want
 
 There are countless design patterns with which you can use this Snippet. Here are a few examples:
 
-1. Use a conditional to show a Chunk only if the Snippet returns `1`.
+#### Use a conditional to show a Chunk only if the Snippet returns `1`.
 ```
 [[[[!verifyOAuth2:is=`1`:then=`$secret_content`:else=`-`]]]]
 ```
 _NOTE: the "four bracket" syntax, which ensures the "then" result will not be processed erroneously. The conditional returns a string, which either forms a Chunk tag or a MODX comment tag, which returns nothing. In this case, the default `redirectUnauthorized` action will also occur._
 
-2. Call resource Snippets or Chunks after the verify Snippet.
+#### Call resource Snippets or Chunks after the verify Snippet.
 ```
 [[!verifyOAuth2]][[!myJsonResponse]]
 ```
 This could be used in a Resource, with "Content Type" set to "JSON". If the request is unverified, the default action will be to send an "Unauthorized" response and exit the current process. If verified, page rendering would continue and the next Snippet would execute.
 
-3. Return static responses.
+#### Return static responses.
 ```
 [[!verifyOAuth2? &redirectUnauthorized=`0` &returnOnUnauthorized=`{"success":false}` &returnOnSuccess=`{"success":true}`]]
 ```
@@ -81,6 +81,7 @@ As I continue to find gotchas, both in the code and in the usage, I'll document 
 
 ## Acknowledgements
 
-- [Brent Shaffer](https://github.com/bshaffer)'s [oauth2-server-php](https://github.com/bshaffer/oauth2-server-php) library is the heart of this Extra
+- [Brent Shaffer](https://github.com/bshaffer)'s [oauth2-server-php](https://github.com/bshaffer/oauth2-server-php) library is the heart of this Extra.
 - [Jason Coward](https://github.com/opengeek) provided his usual prudent, insightful guidance. 
-- The organization of [John Peca](https://github.com/theboxer)'s CMP code made it easy for me to steal, resulting in my first CMP. (ExtJS is hard!)
+- The organization of [John Peca](https://github.com/theboxer)'s CMP code made it easy for me to steal, resulting in my first CMP. (ExtJS is hard!).
+- [Ryan Thrash](https://github.com/rthrash) is always incredibly supportive.
