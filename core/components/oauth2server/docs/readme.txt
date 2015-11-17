@@ -83,5 +83,5 @@ As I continue to find gotchas, both in the code and in the usage, I'll document 
 
 - [Brent Shaffer](https://github.com/bshaffer)'s [oauth2-server-php](https://github.com/bshaffer/oauth2-server-php) library is the heart of this Extra.
 - [Jason Coward](https://github.com/opengeek) provided his usual prudent, insightful guidance. 
-- The organization of [John Peca](https://github.com/theboxer)'s CMP code made it easy for me to steal, resulting in my first CMP. (ExtJS is hard!).
+- The impeccable organization of [John Peca](https://github.com/theboxer)'s CMP code made it easy for me to steal, resulting in my first CMP. (ExtJS is hard!).
 - [Ryan Thrash](https://github.com/rthrash) is always incredibly supportive.
