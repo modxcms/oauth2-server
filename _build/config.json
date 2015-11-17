@@ -1,9 +1,9 @@
 {
     "name": "OAuth2Server"
     ,"lowCaseName": "oauth2server"
-    ,"description": "Deploy oauth2-server-php alongside MODX."
+    ,"description": "Deploy an OAuth2 server in MODX. Grant, revoke and manage access tokens, and verify requests against them."
     ,"author": "YJ Tso"
-    ,"version": "0.7.3"
+    ,"version": "0.7.4-beta1"
     ,"package":{
         "menus": [
           {

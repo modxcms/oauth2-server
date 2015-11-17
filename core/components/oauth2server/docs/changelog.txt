@@ -1,0 +1,3 @@
+OAuth2Server 0.7.4-beta1
+========================
+Initial beta release.
