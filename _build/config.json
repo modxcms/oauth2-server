@@ -3,7 +3,7 @@
     ,"lowCaseName": "oauth2server"
     ,"description": "Deploy an OAuth2 server in MODX. Grant, revoke and manage access tokens, and verify requests against them."
     ,"author": "YJ Tso"
-    ,"version": "0.8.0-dev1"
+    ,"version": "0.8.2-dev1"
     ,"package":{
         "menus": [
           {
