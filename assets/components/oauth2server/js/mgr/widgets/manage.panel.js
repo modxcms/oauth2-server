@@ -36,6 +36,17 @@ oauth2server.panel.Manage = function(config) {
                     ,preventRender: true
                     ,cls: 'main-wrapper'
                 }]
+            },{
+                title: _('oauth2server.refresh_tokens.refresh_tokens')
+                ,items: [{
+                    html: '<p>'+_('oauth2server.refresh_tokens.intro_msg')+'</p>'
+                    ,border: false
+                    ,bodyCssClass: 'panel-desc'
+                },{
+                    xtype: 'oauth2server-grid-refresh-tokens'
+                    ,preventRender: true
+                    ,cls: 'main-wrapper'
+                }]
             }]
         }]
     });

@@ -13,23 +13,9 @@ $_lang['oauth2server.menu.manage_desc'] = 'Manage Access Tokens and Client';
 
 $_lang['oauth2server.global.search'] = 'Search';
 $_lang['oauth2server.global.clear_filters'] = 'Clear Filters';
-/*$_lang['oauth2server.global.all_contexts'] = 'All contexts';*/
 
-$_lang['oauth2server.access_tokens.access_tokens'] = 'Access Tokens';
-$_lang['oauth2server.access_tokens.intro_msg'] = 'Manage Access Tokens here.';
 
-$_lang['oauth2server.access_tokens.client_id'] = 'Client ID';
-$_lang['oauth2server.access_tokens.access_token'] = 'Access Token';
-$_lang['oauth2server.access_tokens.expires'] = 'Expires';
-$_lang['oauth2server.access_tokens.scope'] = 'Scope';
-$_lang['oauth2server.access_tokens.user_id'] = 'User ID';
-$_lang['oauth2server.access_tokens.remove'] = 'Remove Access Token';
-$_lang['oauth2server.access_tokens.remove_confirm'] = 'Are you sure you want to remove this Access Token?';
-/*
-$_lang['oauth2server.access_tokens.filter_by_date'] = 'Filter by Date';
-$_lang['oauth2server.access_tokens.filter_by_context'] = 'Filter by Context';
-*/
-
+/* CLIENTS */
 $_lang['oauth2server.clients.clients'] = 'Client';
 $_lang['oauth2server.clients.intro_msg'] = 'Manage Clients here.';
 
@@ -45,11 +31,34 @@ $_lang['oauth2server.clients.duplicate'] = 'Duplicate Client';
 $_lang['oauth2server.clients.remove'] = 'Remove Client';
 $_lang['oauth2server.clients.remove_confirm'] = 'Are you sure you want to remove this Client?';
 
-/*$_lang['oauth2server.err.access_tokens.date_empty'] = 'Date field must have value.';
-$_lang['oauth2server.err.access_tokens.cxt_conflict'] = 'Contexts: [[+contexts]] are already used for specified date.';
-$_lang['oauth2server.err.access_tokens.link'] = 'Link is not and URL. Example link: http://www.topgolf.com';
-*/
 
+/* ACCESS TOKENS */
+$_lang['oauth2server.access_tokens.access_tokens'] = 'Access Tokens';
+$_lang['oauth2server.access_tokens.intro_msg'] = 'Manage Access Tokens here.';
+
+$_lang['oauth2server.access_tokens.client_id'] = 'Client ID';
+$_lang['oauth2server.access_tokens.access_token'] = 'Access Token';
+$_lang['oauth2server.access_tokens.expires'] = 'Expires';
+$_lang['oauth2server.access_tokens.scope'] = 'Scope';
+$_lang['oauth2server.access_tokens.user_id'] = 'User ID';
+$_lang['oauth2server.access_tokens.remove'] = 'Remove Access Token';
+$_lang['oauth2server.access_tokens.remove_confirm'] = 'Are you sure you want to remove this Access Token?';
+
+
+/* REFRESH TOKENS */
+$_lang['oauth2server.refresh_tokens.refresh_tokens'] = 'Refresh Tokens';
+$_lang['oauth2server.refresh_tokens.intro_msg'] = 'Manage Refresh Tokens here.';
+
+$_lang['oauth2server.refresh_tokens.client_id'] = 'Client ID';
+$_lang['oauth2server.refresh_tokens.refresh_token'] = 'Refresh Token';
+$_lang['oauth2server.refresh_tokens.expires'] = 'Expires';
+$_lang['oauth2server.refresh_tokens.scope'] = 'Scope';
+$_lang['oauth2server.refresh_tokens.user_id'] = 'User ID';
+$_lang['oauth2server.refresh_tokens.remove'] = 'Refresh Access Token';
+$_lang['oauth2server.refresh_tokens.remove_confirm'] = 'Are you sure you want to remove this Refresh Token?';
+
+
+/* ERRORS */
 $_lang['oauth2server.err.clients.client_id_empty'] = 'Client ID is required.';
 $_lang['oauth2server.err.clients.client_id_exists'] = 'Please select a unique Client ID';
 $_lang['oauth2server.clients_err_nfs'] = 'Error saving. Cannot change client_id on update.';

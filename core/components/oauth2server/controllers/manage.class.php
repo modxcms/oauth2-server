@@ -17,6 +17,7 @@ class OAuth2ServerManageManagerController extends OAuth2ServerBaseManagerControl
         
         $this->addJavascript($this->oauth2server->getOption('jsUrl').'mgr/widgets/clients.grid.js');
         $this->addJavascript($this->oauth2server->getOption('jsUrl').'mgr/widgets/access_tokens.grid.js');
+        $this->addJavascript($this->oauth2server->getOption('jsUrl').'mgr/widgets/refresh_tokens.grid.js');
         
         $this->addJavascript($this->oauth2server->getOption('jsUrl').'mgr/widgets/manage.panel.js');
         $this->addLastJavascript($this->oauth2server->getOption('jsUrl').'mgr/sections/manage.js');
