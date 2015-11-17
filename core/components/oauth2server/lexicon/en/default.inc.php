@@ -9,7 +9,7 @@
 $_lang['oauth2server'] = 'oauth2server';
 
 $_lang['oauth2server.menu.manage'] = 'OAuth2Server';
-$_lang['oauth2server.menu.manage_desc'] = 'Manage Access Tokens and Client';
+$_lang['oauth2server.menu.manage_desc'] = 'Manage OAuth2 Clients and Tokens';
 
 $_lang['oauth2server.global.search'] = 'Search';
 $_lang['oauth2server.global.clear_filters'] = 'Clear Filters';
@@ -54,7 +54,7 @@ $_lang['oauth2server.refresh_tokens.refresh_token'] = 'Refresh Token';
 $_lang['oauth2server.refresh_tokens.expires'] = 'Expires';
 $_lang['oauth2server.refresh_tokens.scope'] = 'Scope';
 $_lang['oauth2server.refresh_tokens.user_id'] = 'User ID';
-$_lang['oauth2server.refresh_tokens.remove'] = 'Refresh Access Token';
+$_lang['oauth2server.refresh_tokens.remove'] = 'Remove Refresh Token';
 $_lang['oauth2server.refresh_tokens.remove_confirm'] = 'Are you sure you want to remove this Refresh Token?';
 
 
