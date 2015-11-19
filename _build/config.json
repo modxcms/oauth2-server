@@ -3,7 +3,7 @@
     ,"lowCaseName": "oauth2server"
     ,"description": "Deploy an OAuth2 server in MODX. Grant, revoke and manage access tokens, and verify requests against them."
     ,"author": "YJ Tso"
-    ,"version": "0.8.2-dev1"
+    ,"version": "0.8.3-dev1"
     ,"package":{
         "menus": [
           {
@@ -31,22 +31,32 @@
         ,"resources": [{
             "pagetitle": "OAuth2 Token Controller"
             ,"alias": "tokens"
-            ,"template": "0"
-            ,"content_type": "7"
-            ,"published": "1"
-            ,"hidemenu": "1"
-            ,"cacheable": "0"
-            ,"richtext": "0"
+            ,"template": 0
+            ,"content_type": 7
+            ,"published": 1
+            ,"hidemenu": 1
+            ,"cacheable": 0
+            ,"richtext": 0
             ,"content": "[[!grantOAuth2Tokens]]"
         },{
             "pagetitle": "OAuth2 Authorization"
             ,"alias": "auth"
-            ,"template": "0"
-            ,"published": "1"
-            ,"hidemenu": "1"
-            ,"cacheable": "0"
-            ,"richtext": "0"
+            ,"template": 0
+            ,"published": 1
+            ,"hidemenu": 1
+            ,"cacheable": 0
+            ,"richtext": 0
             ,"content": "[[!authorizeOAuth2]]"
+        },{
+            "pagetitle": "OAuth2 Verification Example"
+            ,"alias": "verify"
+            ,"template": 0
+            ,"content_type": 7
+            ,"published": 1
+            ,"hidemenu": 1
+            ,"cacheable": 0
+            ,"richtext": 0
+            ,"content": "[[!verifyOAuth2? &returnOnSuccess=`{\"success\":true}`]]"
         }]
         ,"systemSettings": [{
             "key": "oauth2server.enabled"

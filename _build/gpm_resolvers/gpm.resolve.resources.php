@@ -201,8 +201,8 @@ switch ($options[xPDOTransport::PACKAGE_ACTION]) {
     array (
     ),
     'link_attributes' => '',
-    'template' => '0',
-    'content_type' => '7',
+    'template' => 0,
+    'content_type' => 7,
     'published' => 1,
     'hidemenu' => 1,
     'cacheable' => 0,
@@ -232,7 +232,38 @@ switch ($options[xPDOTransport::PACKAGE_ACTION]) {
     array (
     ),
     'link_attributes' => '',
-    'template' => '0',
+    'template' => 0,
+    'published' => 1,
+    'hidemenu' => 1,
+    'cacheable' => 0,
+    'richtext' => 0,
+  ),
+  2 => 
+  array (
+    'pagetitle' => 'OAuth2 Verification Example',
+    'alias' => 'verify',
+    'parent' => 0,
+    'content' => '[[!verifyOAuth2? &returnOnSuccess=`{"success":true}`]]',
+    'context_key' => 'web',
+    'class_key' => 'modDocument',
+    'longtitle' => '',
+    'description' => '',
+    'isfolder' => 0,
+    'introtext' => '',
+    'deleted' => 0,
+    'menutitle' => '',
+    'hide_children_in_tree' => 0,
+    'show_in_tree' => 1,
+    'set_as_home' => 0,
+    'tvs' => 
+    array (
+    ),
+    'others' => 
+    array (
+    ),
+    'link_attributes' => '',
+    'template' => 0,
+    'content_type' => 7,
     'published' => 1,
     'hidemenu' => 1,
     'cacheable' => 0,
