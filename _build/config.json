@@ -3,7 +3,7 @@
     ,"lowCaseName": "oauth2server"
     ,"description": "Deploy an OAuth2 server in MODX. Grant, revoke and manage access tokens, and verify requests against them."
     ,"author": "YJ Tso"
-    ,"version": "0.8.3-dev1"
+    ,"version": "0.9.0-dev1"
     ,"package":{
         "menus": [
           {
@@ -22,8 +22,23 @@
                 },{
                 "name": "grantOAuth2Tokens",
                 "file": "grantoauth2tokens.snippet.php"
-            }],
-            "chunks": [{
+            }]
+            ,"plugins": [{
+                "name": "VerifyOAuth2Context",
+                "file": "verifyoauth2context.plugin.php",
+                "events": ["OnWebPageInit"],
+                "properties": [{
+                    "name": "contexts",
+                    "value": "api"
+                },{
+                    "name": "excludeUris",
+                    "value": "auth.html,tokens.json"
+                },{
+                    "name": "redirectTo",
+                    "value": "unauthorized"
+                }]    
+            }]
+            ,"chunks": [{
                 "name": "oauth2server_auth_tpl",
                 "file": "oauth2server_auth_tpl.chunk.tpl"
             }]

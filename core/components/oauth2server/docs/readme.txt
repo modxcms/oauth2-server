@@ -72,6 +72,9 @@ This could be used in a Resource, with "Content Type" set to "JSON". If the requ
 ```
 This overrides much of the default behaviour. In this usage, *page rendering will continue regardless of verification!* The snippet will return the values passed to the `return...` properties. This may be an uncommon pattern, but it's there if you need it.
 
+#### Using the Plugin
+Version 0.9.x adds a Plugin that verifies all requests to a specified Context. This makes it easy to structure your API endpoint Resources in a similar fashion to "standard" or "real" APIs. For example, a Context might have the key 'api' and your Resources might be under a container with the alias 'v1', making your token controller's URI '/api/v1/tokens.json'. Note: the token controller and authorization endpoint must be excluded using the `excludeUris` property if they're to be accessed as intended, while belonging to the restricted Context.
+
 ## Troubleshooting
 Handing out access tokens is tricky business. As Jason Coward warned me, there are a lot of moving parts. 
 
