@@ -29,13 +29,16 @@
                 "events": ["OnWebPageInit"],
                 "properties": [{
                     "name": "contexts",
-                    "value": "api"
+                    "value": "api",
+                    "description": "Limit Plugin action to these contexts (comma-separated list of keys)."
                 },{
                     "name": "excludeUris",
-                    "value": "auth.html,tokens.json"
+                    "value": "auth.html,tokens.json",
+                    "description": "Authorization endpoint and Token controller generally need to be accessible without OAuth2 verification."
                 },{
                     "name": "redirectTo",
-                    "value": "unauthorized"
+                    "value": "unauthorized",
+                    "description": "Can be 'unauthorized' or 'error'. Both fire exit()."
                 }]    
             }]
             ,"chunks": [{

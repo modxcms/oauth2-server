@@ -39,10 +39,10 @@ if ($ctx === 'mgr' || $modx->event->name !== 'OnWebPageInit') return;
 $contexts = array_filter(array_map('trim', explode(',', $modx->getOption('contexts', $scriptProperties, 'api'))));
 // only work on specified contexts
 if (!in_array($ctx, $contexts)) return;
-$excludeUris = array_filter(array_map('trim', explode(',', $modx->getOption('excludeUris', $scriptProperties, 'auth.html,tokens.json'))));
+$excludeUris = array_map('strtolower',array_map('trim', explode(',', $modx->getOption('excludeUris', $scriptProperties, 'auth.html,tokens.json'))));
 // escape if member of excludeUris
 $rpa = $modx->getOption('request_param_alias', null, 'q');
-if (in_array($_REQUEST[$rpa], $excludeUris)) return;
+if (in_array(strtolower($_REQUEST[$rpa]), $excludeUris)) return;
 // 'unauthorized' or 'error' response
 $redirectTo = $modx->getOption('redirectTo', $scriptProperties, 'unauthorized');
 
