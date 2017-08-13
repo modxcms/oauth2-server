@@ -118,9 +118,10 @@ class OAuth2Server
             
         }
 
-        // Only auth code and refresh token grant types supported right now
+        // Supported Grant Types
         $server->addGrantType(new OAuth2\GrantType\AuthorizationCode($storage, $this->options['server']));
         $server->addGrantType(new OAuth2\GrantType\RefreshToken($storage, $this->options['server']));
+        $server->addGrantType(new OAuth2\GrantType\ClientCredentials($storage, $this->options['server']));
         
         return $server;
         
