@@ -90,6 +90,8 @@ class OAuth2Server
         // Load OAuth2
         require_once($this->options['oauth2Path'] . 'Autoloader.php');
         OAuth2\Autoloader::register();
+		
+		require_once('oauth2serveruserstorage.class.php');
                
     }
 
@@ -108,6 +110,14 @@ class OAuth2Server
             return null;
             
         }
+		
+		// Init user storage
+		$userstorage = new OAuth2ServerUserStorage($this->modx);
+		if(!$userstorage instanceof OAuth2ServerUserStorage) {
+            $this->modx->log(modX::LOG_LEVEL_ERROR, '[OAuth2Server] could not load a valid user storage class!');
+            return null;
+		}
+		
         // Init server
         $server = new OAuth2\Server($storage, $this->options['server']);
         
@@ -122,6 +132,7 @@ class OAuth2Server
         $server->addGrantType(new OAuth2\GrantType\AuthorizationCode($storage, $this->options['server']));
         $server->addGrantType(new OAuth2\GrantType\RefreshToken($storage, $this->options['server']));
         $server->addGrantType(new OAuth2\GrantType\ClientCredentials($storage, $this->options['server']));
+		$server->addGrantType(new OAuth2\GrantType\UserCredentials($userstorage, $this->options['server']));
         
         return $server;
         
