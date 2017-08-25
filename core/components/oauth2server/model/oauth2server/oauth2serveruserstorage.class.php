@@ -25,7 +25,13 @@ class OAuth2ServerUserStorage implements UserCredentialsInterface {
      * @param $password
      * Password to be check with.
      *
-     * @return boolean TRUE if the username and password are valid, and FALSE if it isn't.
+     * @return
+     * TRUE if the username and password are valid, and FALSE if it isn't.
+     * Moreover, if the username and password are valid, and you want to
+     *
+     * @see http://tools.ietf.org/html/rfc6749#section-4.3
+     *
+     * @ingroup oauth2_section_4
      */
     public function checkUserCredentials($username, $password){
 		
