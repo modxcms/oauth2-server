@@ -70,5 +70,9 @@ if (!$verified) {
         return $returnOnUnauthorized;
     }
 } else {
+    //set the current user from the verified access token
+    $token = $server->getAccessTokenData($request);
+    if(!empty($token['user_id'])) $modx->user = $modx->getObject('modUser',$token['user_id']);
+    
     return $returnOnSuccess;
 }
